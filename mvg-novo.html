@@ -711,6 +711,19 @@
     @media (max-width: 768px) { .glow--desktop { display: none; } }
 
     /* ============================================================
+       HERO — mobile reorder
+    ============================================================ */
+    @media (max-width: 768px) {
+      .hero__inner        { display: flex; flex-direction: column; }
+      .hero__title-block  { order: 1; }
+      .hero__img-section  { order: 2; }
+      .hero__sub-block    { order: 3; }
+      .hero__pills-block  { order: 4; }
+      .hero__cta-block    { order: 5; }
+      .hero__detail       { display: none; }
+    }
+
+    /* ============================================================
        WHATSAPP BUTTON
     ============================================================ */
     .whatsapp-btn {
@@ -736,9 +749,12 @@
       transition: opacity .2s;
     }
     .whatsapp-btn:hover .whatsapp-tooltip { opacity: 1; }
-    /* On mobile, push whatsapp button above the sticky CTA */
+    /* Mobile: move to LEFT so não conflita com o botão "Garantir acesso" no sticky CTA */
     @media (max-width: 768px) {
-      .whatsapp-btn { bottom: 5.5rem; right: 1rem; width: 50px; height: 50px; }
+      .whatsapp-btn {
+        bottom: 1rem; left: 1rem; right: auto;
+        width: 48px; height: 48px;
+      }
       .whatsapp-tooltip { display: none; }
     }
   </style>
@@ -759,20 +775,16 @@
     <div class="glow" style="width:700px;height:700px;top:-200px;left:50%;transform:translateX(-50%)"></div>
     <div class="hero__inner">
 
-      <div class="reveal">
+      <!-- Título — sempre primeiro -->
+      <div class="hero__title-block reveal">
         <span class="badge">Para donos de lojas de roupas</span>
         <h1 class="hero__title">
           Chega de vender bem num dia<br>e sumir no outro.<br><em>Sua loja merece previsibilidade.</em>
         </h1>
-        <p class="hero__sub">
-          O Método MVG entrega o sistema que organiza marketing, vendas e gestão — para que você pare de depender de sorte e comece a vender com consistência todos os dias.
-        </p>
-        <p class="hero__detail">
-          Mais de 50 aulas práticas mostrando exatamente como atrair clientes certos, converter pelo WhatsApp, estruturar sua operação e entender os números reais da sua loja. Mesmo que você já tenha tentado cursos, agências e anúncios que não entregaram o que prometiam.
-        </p>
       </div>
 
-      <div class="reveal" style="transition-delay:.15s">
+      <!-- Imagem — sobe para order:2 no mobile -->
+      <div class="hero__img-section reveal" style="transition-delay:.15s">
         <div class="hero__img-wrap">
           <img src="/mvg-igor-hero.jpg" alt="Igor Figueiredo — Criador do Método MVG" loading="eager" />
           <div class="hero__img-caption">
@@ -782,7 +794,18 @@
         </div>
       </div>
 
-      <div class="reveal" style="transition-delay:.25s">
+      <!-- Sub + Detail — ficam abaixo da imagem no mobile; detail some no mobile -->
+      <div class="hero__sub-block reveal" style="transition-delay:.2s">
+        <p class="hero__sub">
+          O Método MVG entrega o sistema que organiza marketing, vendas e gestão — para que você pare de depender de sorte e comece a vender com consistência todos os dias.
+        </p>
+        <p class="hero__detail">
+          Mais de 50 aulas práticas mostrando exatamente como atrair clientes certos, converter pelo WhatsApp, estruturar sua operação e entender os números reais da sua loja. Mesmo que você já tenha tentado cursos, agências e anúncios que não entregaram o que prometiam.
+        </p>
+      </div>
+
+      <!-- Pills -->
+      <div class="hero__pills-block reveal" style="transition-delay:.25s">
         <div class="pills">
           <span class="pill">📚 +50 aulas práticas</span>
           <span class="pill">📱 Marketing + Vendas + Gestão</span>
@@ -792,7 +815,8 @@
         </div>
       </div>
 
-      <div class="reveal" style="transition-delay:.35s">
+      <!-- CTA -->
+      <div class="hero__cta-block reveal" style="transition-delay:.35s">
         <div class="cta-wrap">
           <button class="cta-btn" onclick="buy()">
             🔥 Quero acessar o Método MVG — R$19,90
