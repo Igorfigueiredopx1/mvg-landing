@@ -691,7 +691,6 @@
       .igor__grid   { grid-template-columns: 1fr; gap: 2rem; }
       .stats-bar__grid { grid-template-columns: repeat(2, 1fr); }
       .guarantee__card { flex-direction: column; text-align: center; gap: 1.5rem; }
-      .sticky-cta { display: flex; }
       body { padding-bottom: 80px; }
       .section { padding: 3.5rem 1.25rem; }
       .section--lg { padding: 4rem 1.25rem; }
@@ -818,7 +817,7 @@
       <!-- CTA -->
       <div class="hero__cta-block reveal" style="transition-delay:.35s">
         <div class="cta-wrap">
-          <button class="cta-btn" onclick="buy()">
+          <button class="cta-btn" id="hero-cta-btn" onclick="buy()">
             🔥 Quero acessar o Método MVG — R$19,90
           </button>
           <p class="cta-trust">🔒 Pagamento seguro · Acesso imediato · Garantia de 7 dias</p>
@@ -1592,18 +1591,22 @@
       });
     });
 
-    /* ---------- Sticky CTA (hide near footer) ---------- */
-    const stickyCta = document.getElementById('stickyCta');
-    const footer = document.querySelector('.footer');
+    /* ---------- Sticky CTA ↔ WhatsApp toggle ---------- */
+    const heroCta     = document.getElementById('hero-cta-btn');
+    const stickyCta   = document.getElementById('stickyCta');
+    const whatsappBtn = document.querySelector('.whatsapp-btn');
 
-    if (window.innerWidth <= 768) {
-      const stickyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          stickyCta.style.display = entry.isIntersecting ? 'none' : 'flex';
-        });
-      }, { threshold: 0.1 });
-      stickyObserver.observe(footer);
-    }
+    // Estado inicial: WhatsApp visível, barra sticky oculta
+    stickyCta.style.display   = 'none';
+    whatsappBtn.style.display = 'flex';
+
+    const ctaObserver = new IntersectionObserver((entries) => {
+      const visible = entries[0].isIntersecting;
+      stickyCta.style.display   = visible ? 'none' : 'flex';
+      whatsappBtn.style.display = visible ? 'flex' : 'none';
+    }, { threshold: 0 });
+
+    ctaObserver.observe(heroCta);
   </script>
 
 </body>
