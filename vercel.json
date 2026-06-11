@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/politica", "destination": "/politica.html" },
+    { "source": "/termos", "destination": "/termos.html" },
+    { "source": "/exclusao", "destination": "/exclusao.html" },
+    { "source": "/(.*)", "destination": "/mvg.html" }
+  ]
+}
