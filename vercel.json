@@ -3,6 +3,7 @@
     { "source": "/politica", "destination": "/politica.html" },
     { "source": "/termos", "destination": "/termos.html" },
     { "source": "/exclusao", "destination": "/exclusao.html" },
+    { "source": "/novo", "destination": "/mvg-novo.html" },
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
     { "source": "/(.*)", "destination": "/mvg.html" }
   ]
