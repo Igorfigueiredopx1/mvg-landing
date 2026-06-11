@@ -1,0 +1,1 @@
+import{c as r,j as t}from"./client-C5lMDkNf.js";import{aI as o}from"./vendor-lucide-NevBl7ZL.js";import e from"./LandingPage-D9fZAjJV.js";import"./vendor-charts-DxuUefQN.js";r.createRoot(document.getElementById("root")).render(t.jsx(o.StrictMode,{children:t.jsx(e,{})}));
